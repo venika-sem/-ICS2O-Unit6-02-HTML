@@ -9,40 +9,23 @@
  * Check servie worker.
  */
 if (navigator.serviceWorker) {
-  navigator.serviceWorker.register("/ICS2O-Unit5-08-HTML/sw.js", {
-    scope: "/ICS2O-Unit5-08-HTML/",
+  navigator.serviceWorker.register("/ICS2O-Unit6-02-HTML/sw.js", {
+    scope: "/ICS2O-Unit6-02-HTML/",
   })
 }
 
 /**
- * This function does a division loop.
+ * This function adds cookies.
  */
-function myButtonClicked() {
-  const number1 = parseInt(document.getElementById("first-integer").value);
-  const number2 = parseInt(document.getElementById("second-integer").value);
-  var addedNumber = 0;
-  var answer = number1;
-  var remainder = 0;
+function updateCookieCount() {
 
-  if (number1 > 0 && number2 > 0) {
-    while (answer >= number2) {
-      addedNumber = addedNumber + 1;
-      answer = answer - number2;
-    }
+  // input and process
+  if (localStorage.updateCookieCount) {
+    localStorage.updateCookieCount = Number(localStorage.updateCookieCount) +1
+  } else {
+    localStorage.updateCookieCount = 1
   }
 
-  if (answer == 0) {
-    remainder = 0;
-  } else if (answer != 0) {
-    remainder = answer + number2;
-  }
-
-  document.getElementById("answer").innerHTML =
-    number1 +
-    " ÷ " +
-    number2 +
-    " = " +
-    addedNumber +
-    " The remainder is " +
-    remainder;
+  // output
+  document.getElementById("answer").innerHTML = "The amount of times clicked: " + localStorage.updateCookieCount
 }
